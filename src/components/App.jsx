@@ -1,3 +1,5 @@
+// src/components/App.jsx
+
 import React, { useState } from "react";
 import ShoppingList from "./ShoppingList";
 import Header from "./Header";
@@ -11,12 +13,18 @@ function App() {
     setIsDarkMode((isDarkMode) => !isDarkMode);
   }
 
+  // Helper to add new items to state
+  function handleAddItem(newItem) {
+    setItems([...items, newItem]);
+  }
+
   return (
     <div className={"App " + (isDarkMode ? "dark" : "light")}>
       <Header isDarkMode={isDarkMode} onDarkModeClick={handleDarkModeClick} />
-      <ShoppingList items={items} />
+      {/* Pass the submit handler to ShoppingList */}
+      <ShoppingList items={items} onItemFormSubmit={handleAddItem} />
     </div>
   );
 }
 
-export default App;
+export default App; 
